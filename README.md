@@ -144,6 +144,25 @@ You have two deployment options:
 
 ### AWS EC2 (Ubuntu 22.04)
 
+The repository ships with an automated helper (`deploy_aws.sh`) that prepares a
+fresh Ubuntu 22.04 host, installs dependencies, configures systemd services for
+both the FastAPI app and `nanda_integration.py`, and wires Nginx as a reverse
+proxy. A detailed, copy-paste friendly walk-through lives in
+[`docs/deploy_ec2.md`](docs/deploy_ec2.md).
+
+Quick start:
+
+```bash
+chmod +x deploy_aws.sh
+REPO_URL="https://github.com/<your-org>/nanda-agent.git" \
+REPO_BRANCH="main" \
+./deploy_aws.sh
+```
+
+The script backs up any existing deployment, prompts you to fill out `.env`, and
+enables the NANDA bridge only when a non-localhost `DOMAIN_NAME` is configured.
+If you prefer manual configuration, the high-level steps are listed below.
+
 1. **Provision EC2**
    - Instance: t3.small
    - OS: Ubuntu 22.04 LTS

@@ -1,1 +1,5 @@
-# NANDA Agent Package
+"""MedSpa Agent package."""
+
+from .main import create_app
+
+__all__ = ["create_app"]
